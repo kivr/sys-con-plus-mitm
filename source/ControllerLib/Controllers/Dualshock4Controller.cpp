@@ -122,7 +122,7 @@ Result Dualshock4Controller::GetInput()
     if (R_FAILED(rc))
         return rc;
 
-    if (input_bytes[0] == 0x01)
+    //if (input_bytes[0] == 0x01)
     {
         m_buttonData = *reinterpret_cast<Dualshock4USBButtonData *>(input_bytes);
     }
@@ -177,8 +177,8 @@ NormalizedButtonData Dualshock4Controller::GetNormalizedButtonData()
 {
     NormalizedButtonData normalData{};
 
-    normalData.triggers[0] = NormalizeTrigger(_dualshock4ControllerConfig.triggerDeadzonePercent[0], m_buttonData.l2_pressure);
-    normalData.triggers[1] = NormalizeTrigger(_dualshock4ControllerConfig.triggerDeadzonePercent[1], m_buttonData.r2_pressure);
+    normalData.triggers[0] = m_buttonData.type;
+    //normalData.triggers[1] = NormalizeTrigger(m_buttonData.r2_pressure);
 
     NormalizeAxis(m_buttonData.stick_left_x, m_buttonData.stick_left_y, _dualshock4ControllerConfig.stickDeadzonePercent[0],
                   &normalData.sticks[0].axis_x, &normalData.sticks[0].axis_y);

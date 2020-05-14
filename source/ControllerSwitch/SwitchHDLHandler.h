@@ -4,13 +4,15 @@
 #include "IController.h"
 #include "SwitchVirtualGamepadHandler.h"
 
+#define MX_NUM 3
+
 //Wrapper for HDL functions for switch versions [7.0.0+]
 class SwitchHDLHandler : public SwitchVirtualGamepadHandler
 {
 private:
-    u64 m_hdlHandle;
-    HiddbgHdlsDeviceInfo m_deviceInfo;
-    HiddbgHdlsState m_hdlState;
+    u64 m_hdlHandle[MX_NUM];
+    HiddbgHdlsDeviceInfo m_deviceInfo[MX_NUM];
+    HiddbgHdlsState m_hdlState[MX_NUM];
 
 public:
     //Initialize the class with specified controller
